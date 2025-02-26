@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b71fae31e6c7d438e8566dc713e666, type: 3}
+  m_Name: HannoverCube
+  m_EditorClassIdentifier: 
+  m_FormatVersion: 20231020
+  m_SplatCount: 93639
+  m_BoundsMin: {x: -0.6922984, y: -0.79242706, z: -0.7778194}
+  m_BoundsMax: {x: 0.68782854, y: 0.79546356, z: 0.7707646}
+  m_DataHash:
+    serializedVersion: 2
+    Hash: 0c9bf575732876ccf8ec8fc83035a586
+  m_PosFormat: 2
+  m_ScaleFormat: 3
+  m_SHFormat: 6
+  m_ColorFormat: 2
+  m_PosData: {fileID: 4900000, guid: 2ecafa1b41c0ba0429207cc29bfdc6c4, type: 3}
+  m_ColorData: {fileID: 4900000, guid: 0c0423b55822d2148a45d7890bf88ecf, type: 3}
+  m_OtherData: {fileID: 4900000, guid: f1b698de283e1ad46964badd312fa76a, type: 3}
+  m_SHData: {fileID: 4900000, guid: b7ff7babbbf528e41ac829d9842d331e, type: 3}
+  m_ChunkData: {fileID: 4900000, guid: 758ac03cc7801a8419b6a5725601a3f6, type: 3}
+  m_Cameras: []

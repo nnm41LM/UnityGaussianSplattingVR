@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b71fae31e6c7d438e8566dc713e666, type: 3}
+  m_Name: Boots
+  m_EditorClassIdentifier: 
+  m_FormatVersion: 20231020
+  m_SplatCount: 93263
+  m_BoundsMin: {x: -0.13449612, y: -0.072102666, z: -0.08220363}
+  m_BoundsMax: {x: 0.13454685, y: 0.0773114, z: 0.082347155}
+  m_DataHash:
+    serializedVersion: 2
+    Hash: 7bbadc50a60c43b361c4bd6b9168e204
+  m_PosFormat: 2
+  m_ScaleFormat: 3
+  m_SHFormat: 8
+  m_ColorFormat: 3
+  m_PosData: {fileID: 4900000, guid: 663c2d9dbaf166c458fce81eba79889d, type: 3}
+  m_ColorData: {fileID: 4900000, guid: 8b18ae6af35c643409da5a4618d19cca, type: 3}
+  m_OtherData: {fileID: 4900000, guid: 2cc2ebe82beaa1644b54021ef6e99f8c, type: 3}
+  m_SHData: {fileID: 4900000, guid: 9360bdfe67c3b5649b80d00cf6d46a87, type: 3}
+  m_ChunkData: {fileID: 4900000, guid: d1c72c8f31e634245942cb87b7dd304c, type: 3}
+  m_Cameras: []
