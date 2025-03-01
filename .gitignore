@@ -4,7 +4,6 @@
 .idea
 
 /builds/*
-/images/*
 /Shot-*.png
 
 /Assets/GaussianAssets/*
