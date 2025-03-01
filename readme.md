@@ -1,100 +1,102 @@
-# Gaussian Splatting playground in Unity
+# 🚀 3D Gaussian Splattingのパススルー機能追加 
 
-SIGGRAPH 2023 had a paper "[**3D Gaussian Splatting for Real-Time Radiance Field Rendering**](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/)" by Kerbl, Kopanas, Leimkühler, Drettakis
-that is really cool! Check out their website, source code repository, data sets and so on. I've decided to try to implement the realtime visualization part (i.e. the one that takes already-produced
-gaussian splat "model" file) in Unity.
+## ※このプロジェクトは [UnityGaussianSplatting](https://github.com/aras-p/UnityGaussianSplatting) を基に開発しました。
 
-![Screenshot](/docs/Images/shotOverview.jpg?raw=true "Screenshot")
+![Unity Gaussian Splatting VR Video](images/UnityGSVR.gif)  
 
-Everything in this repository is based on that "OG" gaussian splatting paper. Towards end of 2023, there's a ton of
-[new gaussian splatting research](https://github.com/MrNeRF/awesome-3D-gaussian-splatting) coming out; _none_ of that is in this project.
+---
 
-:warning: Status as of 2023 December: I'm not planning any significant further developments.
+## 🎯 概要
 
-:warning: The only platforms where this is known to work are the ones that use D3D12, Metal or Vulkan graphics APIs.
-PC (Windows on D3D12 or Vulkan), Mac (Metal), Linux (Vulkan) should work. Anything else I have not actually tested;
-it might work or it might not.
-- Some virtual reality devices work (reportedly HTC Vive, Varjo Aero, Quest 3 and Quest Pro). Some others might not
-  work, e.g. Apple Vision Pro. See [#17](https://github.com/aras-p/UnityGaussianSplatting/issues/17)
-- Anything using OpenGL or OpenGL ES: [#26](https://github.com/aras-p/UnityGaussianSplatting/issues/26)
-- WebGPU might work someday, but seems that today it does not quite have all the required graphics features yet: [#65](https://github.com/aras-p/UnityGaussianSplatting/issues/65)
-- Mobile may or might not work. Some iOS devices definitely do not work ([#72](https://github.com/aras-p/UnityGaussianSplatting/issues/72)),
-  some Androids do not work either ([#112](https://github.com/aras-p/UnityGaussianSplatting/issues/112))
+このプロジェクトは、**3D Gaussian Splatting を VR 空間で視認し、パススルー環境での活用を可能にしたサンプルアプリ** です。  
+**Scaniverse** で撮影したデータを VR で視認し、**手の動作でメモとして線を引く機能を追加** しました。
 
-## Usage
+📌 **最新の 3D Gaussian Splatting 技術を活用し、実物大の 3D スキャンデータを VR で視認**  
+📌 **手のジェスチャーで線を描画・削除し、メモ機能として活用**  
+📌 **Quest のパススルー機能を活用し、背景と融合した 3D モデルの表示を実現**
 
-Download or clone this repository, open `projects/GaussianExample` as a Unity project (I use Unity 2022.3, other versions might also work),
-and open `GSTestScene` scene in there.
+---
 
-Note that the project requires DX12 or Vulkan on Windows, i.e. **DX11 will not work**. This is **not tested at all on mobile/web**, and probably
-does not work there.
+## 🎨 3D Gaussian Splatting の活用
+- **3D Gaussian Splatting** をパススルー環境で視認可能（録画時には背景が黒くなっていますがパススルー表示可能です）
+- **ハノーバーメッセ（2024年 ドイツ）で撮影したオブジェを VR で視認**
+- **Scaniverse で撮影したデータを活用し、実物大での確認が可能**
+- **他の 3D Gaussian Splatting データも利用可能**
 
-<img align="right" src="docs/Images/shotAssetCreator.png" width="250px">
+📌 **新しい 3D スキャン技術を VR で活用することに重点を置いたプロジェクトです。**
 
-Next up, **create some GaussianSplat assets**: open `Tools -> Gaussian Splats -> Create GaussianSplatAsset` menu within Unity.
-In the dialog, point `Input PLY File` to your Gaussian Splat file (note that it has to be a gaussian splat PLY file, not some 
-other PLY file. E.g. in the official paper models, the correct files are under `point_cloud/iteration_*/point_cloud.ply`).
-Optionally there can be `cameras.json` next to it or somewhere in parent folders.
+---
 
-Pick desired compression options and output folder, and press "Create Asset" button. The compression even at "very low" quality setting is decently usable, e.g. 
-this capture at Very Low preset is under 8MB of total size (click to see the video): \
-[![Watch the video](https://img.youtube.com/vi/iccfV0YlWVI/0.jpg)](https://youtu.be/iccfV0YlWVI)
+## 🖐️ ハンドトラッキングによる操作
+- **コントローラー不要、ハンドトラッキングのみで操作可能**
+- **親指と人差し指でつまむと線を描画**
+- **左手のひらを顔に向けた状態でつまむと線をリセット**
+- **右手のひらを顔に向けて長くつまむと、正面がリセットされ3Dオブジェクトを移動可能**
 
-If everything was fine, there should be a GaussianSplat asset that has several data files next to it.
+---
 
-Since the gaussian splat models are quite large, I have not included any in this Github repo. The original
-[paper github page](https://github.com/graphdeco-inria/gaussian-splatting) has a a link to
-[14GB zip](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/datasets/pretrained/models.zip) of their models.
+## 🛠 使用技術
+| 技術 | 詳細 |
+|------|------|
+| Unity | 2022.3.16f1 |
+| C# | .NET Standard |
+| Scaniverse | iOS 4.0.5 |
 
+---
 
-In the game object that has a `GaussianSplatRenderer` script, **point the Asset field to** one of your created assets.
-There are various controls on the script to debug/visualize the data, as well as a slider to move game camera into one of asset's camera
-locations.
+## 📥 アプリの使用方法
 
-The rendering takes game object transformation matrix into account; the official gaussian splat models seem to be all rotated by about
--160 degrees around X axis, and mirrored around Z axis, so in the sample scene the object has such a transform set up.
+1. **Quest の開発者モードを有効化**
+2. `build` ディレクトリにある `apk` ファイルを **Meta Quest シリーズ** にインストール
+3. ヘッドセットからアプリを起動し、3D Gaussian Splatting を VR で視認
 
-Additional documentation:
+## 📥 プロジェクトの使用方法
 
-* [Render Pipeline Integration](/docs/render-pipeline-integration.md)
-* [Editing Splats](/docs/splat-editing.md)
+`projects` > `GaussianExample-URP`を対応するバージョンのUnityEditorで開いてください
 
-_That's it!_
+---
 
+## 🎮 確認済み動作環境
 
-## Write-ups
+✅ **Meta Quest 3**  
+✅ **Meta Quest 2**（⚠️ パススルーは灰色表示、録画時に背景が黒くなる）  
 
-My own blog posts about all this:
-* [Gaussian Splatting is pretty cool!](https://aras-p.info/blog/2023/09/05/Gaussian-Splatting-is-pretty-cool/) (2023 Sep 5)
-* [Making Gaussian Splats smaller](https://aras-p.info/blog/2023/09/13/Making-Gaussian-Splats-smaller/) (2023 Sep 13)
-* [Making Gaussian Splats more smaller](https://aras-p.info/blog/2023/09/27/Making-Gaussian-Splats-more-smaller/) (2023 Sep 27)
-* [Gaussian Explosion](https://aras-p.info/blog/2023/12/08/Gaussian-explosion/) (2023 Dec 8)
+---
 
-## Performance numbers:
+## 🚀 機能
 
-"bicycle" scene from the paper, with 6.1M splats and first camera in there, rendering at 1200x797 resolution,
-at "Medium" asset quality level (282MB asset file):
+### 🎨 3D Gaussian Splatting のパススルー表示
+- **背景が透過した状態で 3D Gaussian Splatting を視認**
+  
+### 🔄 ガーディアン非表示機能
+- **VR の「ガーディアン」機能を OFF にして、自由に移動可能**
 
-* Windows (NVIDIA RTX 3080 Ti):
-  * Official SBIR viewer: 7.4ms (135FPS). 4.8GB VRAM usage.
-  * Unity, DX12 or Vulkan: 6.8ms (147FPS) - 4.5ms rendering, 1.1ms sorting, 0.8ms splat view calc. 1.3GB VRAM usage.
-* Mac (Apple M1 Max):
-  * Unity, Metal: 21.5ms (46FPS).
+### 🖐️ ハンズフリーの操作
+- **右手親指と人差し指でつまむと線の描画**
+- **左手のひらを顔に向けてつまむと全ての線を削除**
+- **右手のひらを顔に向けて長くつまむとオブジェクトを移動**
 
-Besides the gaussian splat asset that is loaded into GPU memory, currently this also needs about 48 bytes of GPU memory
-per splat (for sorting, caching view dependent data etc.).
+---
 
+## 🛠 技術的工夫
 
-## License and External Code Used
+📌 **ハンドトラッキングを活用した直感的な操作**
+- **手のジェスチャーを利用し、コントローラーなしで操作**
 
-The code I wrote for this is under MIT license. The project also uses several 3rd party libraries:
+📌 **3D Gaussian Splatting の VR 環境最適化**
+- **背景を透過して、リアル空間と融合**
 
-- [zanders3/json](https://github.com/zanders3/json), MIT license, (c) 2018 Alex Parker.
-- "DeviceRadixSort" GPU sorting code contributed by Thomas Smith ([#82](https://github.com/aras-p/UnityGaussianSplatting/pull/82)).
-- Virtual Reality fixes contributed by [@ninjamode](https://github.com/ninjamode) based on
-  [Unity-VR-Gaussian-Splatting](https://github.com/ninjamode/Unity-VR-Gaussian-Splatting).
+📌 **VR 体験の向上**
+- **ガーディアン非表示で、体験の煩わしさを解消**
 
-However, keep in mind that the [license of the original paper implementation](https://github.com/graphdeco-inria/gaussian-splatting/blob/main/LICENSE.md)
-says that the official _training_ software for the Gaussian Splats is for educational / academic / non-commercial
-purpose; commercial usage requires getting license from INRIA. That is: even if this viewer / integration
-into Unity is just "MIT license", you need to separately consider *how* did you get your Gaussian Splat PLY files.
+---
+
+## 📚 参考資料
+
+🔗 **ドキュメント**  
+[📄 Meta XRパッケージドキュメント](https://developers.meta.com/horizon/documentation/unity/unity-package-manager/?locale=ja_JP)  
+
+🔗 **引用文献**  
+[📖 Unity Gaussian Splatting リポジトリ](https://github.com/aras-p/UnityGaussianSplatting)  
+[📖 【Unity】Questのハンドトラッキングで特定の手の形を認識して処理を走らせる](https://qiita.com/SousiOmine/items/4d07c1bea48fa9b63a93)  
+[📖 境界線なし](https://developers.meta.com/horizon/documentation/unity/unity-boundaryless?locale=ja_JP)  
